@@ -1,0 +1,5 @@
+python-telegram-bot
+pytest
+pytest-cov
+flask
+waitress
