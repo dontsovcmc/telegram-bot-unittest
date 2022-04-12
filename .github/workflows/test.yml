@@ -31,10 +31,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov
+          ls -la
 
       - name: Submit coverage
         uses: codecov/codecov-action@v2
-        with:
-          env_vars: OS,PYTHON
-          name: ${{ matrix.os }}-${{ matrix.python-version }}
-          fail_ci_if_error: true
