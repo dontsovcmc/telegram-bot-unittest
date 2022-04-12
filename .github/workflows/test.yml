@@ -13,8 +13,8 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.8]
+№        os: [ubuntu-latest]
       fail-fast: False
     steps:
       - name: Set up Python ${{ matrix.python-version }}
@@ -23,6 +23,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          ls -la
           python -W ignore -m pip install --upgrade pip
           python -W ignore -m pip install -r requirements.txt
       - name: Test with pytest
