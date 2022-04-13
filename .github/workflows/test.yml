@@ -2,10 +2,10 @@ name: GitHub Actions
 on:
   pull_request:
     branches:
-      - master
+      - dev
   push:
     branches:
-      - master
+      - dev
 
 jobs:
   pytest:
@@ -31,6 +31,8 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov
+          ls -la
+          coverage report
           ls -la
 
       - name: Submit coverage
