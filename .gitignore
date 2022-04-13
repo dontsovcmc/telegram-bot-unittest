@@ -2,6 +2,7 @@
 .idea
 __pycache__
 .coverage
+coverage.xml
 .pytest_cache
 venv
 build
