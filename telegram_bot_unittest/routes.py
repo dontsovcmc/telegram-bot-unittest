@@ -6,7 +6,7 @@ from flask import Flask, request, make_response
 
 from flask import json
 from .core import result_ok, core
-from .user import virtual_bot, chat
+from .user import virtual_bot
 
 logger = logging.getLogger(__name__)
 
@@ -66,8 +66,10 @@ def sendMessage(token: str):
     chat_id = int(data['chat_id'])
     text = data['text']
 
+    chat = {'id': chat_id, 'type': 'private'}  # simple chat structure
+
     ret = core.bot_send(bot_from=virtual_bot.to_dict(),
-                        chat=chat.to_dict(),
+                        chat=chat,
                         text=text
                         )
 

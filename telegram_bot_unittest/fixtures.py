@@ -1,13 +1,17 @@
 
 import pytest
 from .routes import start_server, shutdown_server
-from .user import Client
+from .user import Tester, UserBase, ChatBase
 from .core import core
 
 
+u = UserBase()
+chat = ChatBase()
+
+
 @pytest.fixture(scope='session')
-def user() -> Client:
-    user = Client(core)
+def user() -> Tester:
+    user = Tester(core, u, chat)
     return user
 
 

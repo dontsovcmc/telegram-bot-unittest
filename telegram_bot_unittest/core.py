@@ -62,6 +62,7 @@ class TelegramCore:
                        }]
                    }
 
+        self.init_queue(bot_id)
         self.income[bot_id].put(message)
 
     def bot_send(self, bot_from, chat, text) -> Dict:
@@ -81,12 +82,16 @@ class TelegramCore:
 
         ret = []
         try:
+            if chat_id not in self.income:
+                self.init_queue(chat_id)
+
             message = self.income[chat_id].get(timeout=timeout)
 
             self._update_counter += 1
             ret = [{'update_id': self._update_counter,
                     'message': message
                     }]
+
         except Empty:
             pass
 

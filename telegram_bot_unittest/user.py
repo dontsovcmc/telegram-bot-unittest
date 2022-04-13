@@ -1,18 +1,38 @@
 from typing import Dict
 from telegram import User, Chat
 
-CHAT_ID = 1
 BOT_ID = 5000000000
+
 BOT_TOKEN = f'5000000000:BBFJVn-zqLnqQGv_Vrg75aJ5rqppy410rm0'
 
+CHAT_ID = 1
 
-user = User(
-    CHAT_ID,  # id
-    'FN',  # first_name
-    False,  # is_bot
-    'LN',  # last_name
-    'user1',  # username
-    'ru')  # language_code
+
+class UserBase(User):
+
+    def __init__(self, id: int = CHAT_ID):
+        super().__init__(
+            id,  # id
+            'FN',  # first_name
+            False,  # is_bot
+            'LN',  # last_name
+            'user1',  # username
+            'ru'  # language_code
+        )
+
+
+class ChatBase(Chat):
+
+    def __init__(self, id: int = CHAT_ID):
+        super().__init__(
+            id,
+            'private',  # type
+            None,  # title
+            'user1',  # username
+            'FN',  # first_name
+            'LN',  # last_name
+        )
+
 
 virtual_bot = User(
     BOT_ID,
@@ -26,40 +46,31 @@ virtual_bot = User(
     False  # supports_inline_queries
 )
 
-chat = Chat(
-    CHAT_ID,
-    'private',  # type
-    None,  # title
-    'user1',  # username
-    'FN',  # first_name
-    'LN',  # last_name
-)
 
+class Tester:
 
-class Client:
-
-    def __init__(self, core):
-        self.chat_id = CHAT_ID
+    def __init__(self, core, user, chat):
         self.core = core
-        self.core.init_queue(self.chat_id)
+        self.user = user
+        self.chat = chat
 
     def send_message(self, text: str) -> None:
 
         self.core.user_send(virtual_bot.id,
-                            user_from=user.to_dict(),
-                            chat=chat.to_dict(),
+                            user_from=self.user.to_dict(),
+                            chat=self.chat.to_dict(),
                             text=text
                             )
 
     def send_command(self, command: str) -> None:
 
         self.core.user_send_command(virtual_bot.id,
-                                    user_from=user.to_dict(),
-                                    chat=chat.to_dict(),
+                                    user_from=self.user.to_dict(),
+                                    chat=self.chat.to_dict(),
                                     command=command
                                     )
 
     def get_message(self, timeout=2.0) -> Dict:
-        messages = self.core.get_updates(self.chat_id, timeout)
+        messages = self.core.get_updates(self.user.id, timeout)
         if messages:
             return messages[0]['message']

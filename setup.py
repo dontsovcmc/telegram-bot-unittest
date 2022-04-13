@@ -2,9 +2,16 @@ import os
 from setuptools import setup
 
 VERSION_MAJOR = 0
-VERSION_MINOR = 1
+VERSION_MINOR = 2
 
 ver = '%d.%d' % (VERSION_MAJOR, VERSION_MINOR)
+
+backlog = """
+
+0.2 - 22.04.13 - add multiple users
+
+0.1 - 22.04.12 - init version
+"""
 
 if __name__ == '__main__':
     """
