@@ -17,7 +17,7 @@ if __name__ == '__main__':
     """
     Create Packet:
 
-    python setup.py sdist --formats=zip bdist_wheel   # или --formats=gztar
+    python setup.py sdist --formats=zip bdist_wheel   # --formats=gztar
     twine upload dist/*
     """
     with open(os.path.join(os.getcwd(), 'README.rst'), 'r', encoding='utf-8') as fh:
@@ -27,8 +27,8 @@ if __name__ == '__main__':
         name='telegram-bot-unittest',
         version=ver,
         description='test your python-telegram-bot easily',
-        long_description=long_description,
         long_description_content_type='text/x-rst',
+        long_description=long_description,
         author='Dontsov E.',
         author_email='dontsovcmc@gmail.com',
         url='https://github.com/dontsovcmc/telegram_bot_unittest',

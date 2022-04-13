@@ -4,40 +4,39 @@ Unit-tests for `python-telegram-bot <https://github.com/python-telegram-bot/pyth
 How it works
 ====================
 
-**=This is a first version of library=**
+**This is a first version of library**
 
 Library starts your python-telegram-bot object with custom url (our unit-test server on Flask running under waitress).
 Now you can communicate in unit-tests with your bot as you do in Telegram.
 
-----
+
 Features
-----
+-------------------
 
 1. send text message
 2. send command
 
-----
+
 Fixtures
-----
+-------------------
 
 user
-----
+--------------------------
 
 User object to send messages and check incoming messages from your bot
 
 bot
-----
+--------------------------
+Your bot object. See 'Using'
 
-You bot object. See 'Using'
 
 
-----
 Echo Bot example
-----
+--------------------------
 
 Check echo of Echo Bot from python-telegram-bot example.
 
-.. code:: python
+.. code::
 
     def test_echobot_message(bot, user):
         user.send_message('testing message')
@@ -47,7 +46,7 @@ Check echo of Echo Bot from python-telegram-bot example.
 
 Check /start command of Echo Bot
 
-.. code:: python
+.. code::
 
     def test_echobot_start(bot, user):
         user.send_command('/start')
@@ -60,13 +59,13 @@ Installing
 
 You can install or upgrade telegram-bot-unittest with:
 
-.. code:: shell
+.. code::
 
     $ pip install telegram-bot-unittest --upgrade
 
 Or you can install from source with:
 
-.. code:: shell
+.. code::
 
     $ git clone https://github.com/dontsovcmc/telegram-bot-unittest --recursive
     $ cd telegram-bot-unittest
@@ -79,7 +78,7 @@ Using
 1. Create non-bloking function 'setup_bot' that runs your bot.
 We need to separate updater.idle() and creating Updater().
 
-.. code:: python
+.. code::
 
     def setup_bot(bot_token: str, base_url: str = None) -> Updater:
 
@@ -102,7 +101,7 @@ We need to separate updater.idle() and creating Updater().
 
 2. Add fixture 'bot' to you fixture.py file. Example:
 
-.. code:: python
+.. code::
 
     import pytest
     from <your module> import <start_bot_function>
