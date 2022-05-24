@@ -2,11 +2,12 @@ import os
 from setuptools import setup
 
 VERSION_MAJOR = 0
-VERSION_MINOR = 2
+VERSION_MINOR = 3
 
 ver = '%d.%d' % (VERSION_MAJOR, VERSION_MINOR)
 
 backlog = """
+0.3 - 22.05.24 - send & receive documents
 
 0.2 - 22.04.13 - add multiple users
 
@@ -34,8 +35,11 @@ if __name__ == '__main__':
         url='https://github.com/dontsovcmc/telegram_bot_unittest',
         include_package_data=True,
         packages=[
-            'echobot',
-            'telegram_bot_unittest'
+            'examples',
+            'examples.echobot',
+            'examples.filebot',
+            'telegram_bot_unittest',
+            'telegram_bot_unittest.pytest'
         ],
         classifiers=[
             'Development Status :: 5 - Production/Stable',

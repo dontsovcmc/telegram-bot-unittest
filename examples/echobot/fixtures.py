@@ -1,6 +1,8 @@
 
 import pytest
-from echobot.echobot import setup_bot
+
+from examples.echobot.echobot import setup_bot
+
 from telegram_bot_unittest.routes import TELEGRAM_URL
 from telegram_bot_unittest.user import BOT_TOKEN, CHAT_ID
 
@@ -18,7 +20,7 @@ from telegram_bot_unittest.core import core
 user2_id = CHAT_ID+1
 
 u2 = UserBase(user2_id)
-chat2 = ChatBase(user2_id)
+chat2 = ChatBase(u2)
 
 
 @pytest.fixture(scope='session')

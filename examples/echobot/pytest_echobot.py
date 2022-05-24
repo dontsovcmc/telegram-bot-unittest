@@ -7,7 +7,7 @@ def test_echobot_start(bot, user):
     message = user.get_message()
 
     assert message
-    assert message['text'] == 'Hi [FN LN](tg://user?id=1)\!'
+    assert message['text'] == 'Hi [FirstName LastName](tg://user?id=1)\!'
 
 
 def test_echobot_help(bot, user):
@@ -20,7 +20,7 @@ def test_echobot_help(bot, user):
     assert message['text'] == 'Help!'
 
 
-def test_echobot_message(bot, user, user2):
+def test_echobot_message(bot, user):
 
     user.send_message('testing message')
 
@@ -29,9 +29,19 @@ def test_echobot_message(bot, user, user2):
     assert message
     assert message['text'] == 'testing message'
 
-    user2.send_message('testing message')
+
+def test_echobot_multiple_users(bot, user, user2):
+
+    user.send_message('my name user1')
+
+    message = user.get_message()
+
+    assert message
+    assert message['text'] == 'my name user1'
+
+    user2.send_message('my name user2')
 
     message = user2.get_message()
 
     assert message
-    assert message['text'] == 'testing message'
+    assert message['text'] == 'my name user2'

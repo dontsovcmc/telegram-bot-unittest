@@ -6,6 +6,8 @@ How it works
 
 **This is a first version of library**
 
+**Only long polling mode supported!**
+
 Library starts your python-telegram-bot object with custom url (our unit-test server on Flask running under waitress).
 Now you can communicate in unit-tests with your bot as you do in Telegram.
 
@@ -15,6 +17,8 @@ Features
 
 1. send text message
 2. send command
+3. send file
+4. receive file
 
 
 Fixtures
@@ -52,6 +56,27 @@ Check /start command of Echo Bot
         user.send_command('/start')
         message = user.get_message()
         assert message['text'] == 'Hi [FN LN](tg://user?id=1)\!'
+
+
+File Bot example
+---------------------------
+
+Bot renames file you send to him.
+
+.. code::
+
+    def test_echobot_file(bot, user):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        user.send_document(current_dir, 'test.txt')
+
+        document = user.get_document()
+
+        file_io = document.path_or_bytes
+        assert file_io.name == 'echo_test.txt'
+
+        content = io.TextIOWrapper(file_io, encoding='utf-8').read()
+        assert content == 'Hello world!\nHello world!'
 
 ==========
 Installing

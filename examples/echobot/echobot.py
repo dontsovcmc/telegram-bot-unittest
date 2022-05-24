@@ -7,8 +7,6 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 
-# Define a few command handlers. These usually take the two arguments update and
-# context.
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
@@ -30,20 +28,16 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 def setup_bot(bot_token: str, base_url: str = None) -> Updater:
     """Start the bot."""
-    # Create the Updater and pass it your bot's token.
+
     updater = Updater(bot_token, base_url=base_url)
 
-    # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
 
-    # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
 
-    # on non command i.e message - echo the message on Telegram
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
-    # Start the Bot
     updater.start_polling()
 
     return updater
@@ -53,9 +47,6 @@ def main(base_url: str = None) -> None:
 
     updater = setup_bot(BOT_TOKEN, base_url)
 
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
