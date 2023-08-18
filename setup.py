@@ -2,11 +2,13 @@ import os
 from setuptools import setup
 
 VERSION_MAJOR = 0
-VERSION_MINOR = 3
+VERSION_MINOR = 4
 
 ver = '%d.%d' % (VERSION_MAJOR, VERSION_MINOR)
 
 backlog = """
+0.4 - 23.08.18 - edit message command
+
 0.3 - 22.05.24 - send & receive documents
 
 0.2 - 22.04.13 - add multiple users
