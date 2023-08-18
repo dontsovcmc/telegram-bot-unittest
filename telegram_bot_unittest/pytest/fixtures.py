@@ -1,7 +1,8 @@
 
 import pytest
 
-from examples.echobot.echobot import setup_bot
+#from examples.echobot.echobot import setup_bot
+from telegram_bot_unittest.pytest.testbot import setup_bot
 
 from telegram_bot_unittest.routes import TELEGRAM_URL
 from telegram_bot_unittest.user import BOT_TOKEN, CHAT_ID

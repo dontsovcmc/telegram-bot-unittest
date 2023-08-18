@@ -159,6 +159,28 @@ def getFile(token: str):
     return result_ok([], False)
 
 
+@app.route('/<token>/editMessageText', methods=['POST'])
+def editMessageText(token: str):
+    """
+    Bot sends message to Telegram
+    :param token:
+    :return:
+    """
+    data = request.get_json()
+
+    chat_id = int(data['chat_id'])
+    text = data['text']
+
+    chat = {'id': chat_id, 'type': 'private'}  # simple chat structure
+
+    ret = core.send(chat_id,
+                    sender=virtual_bot.to_dict(),
+                    chat=chat,
+                    text=text)
+
+    return server_response(ret)
+
+
 @app.route('/<token>/file/<file_id>', methods=['GET'])
 def file(token: str, file_id: str):
     """

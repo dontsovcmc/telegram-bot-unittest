@@ -45,3 +45,14 @@ def test_bot_multiple_users(bot, user, user2):
 
     assert message
     assert message['text'] == 'my name user2'
+
+
+def test_bot_edit_message(bot, user):
+
+    user.send_command('/edit')
+
+    messages = user.get_messages(2)
+
+    assert len(messages) == 2
+    assert messages[0]['text'] == 'first message'
+    assert messages[1]['text'] == 'second message'

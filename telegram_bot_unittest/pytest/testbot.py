@@ -20,6 +20,11 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Help!')
 
 
+def edit_handler(update: Update, context: CallbackContext) -> None:
+    msg = update.message.reply_text('first message')
+    msg.edit_text('second message')
+
+
 def echo(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(update.message.text)
 
@@ -50,6 +55,7 @@ def setup_bot(bot_token: str, base_url: str = None) -> Updater:
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
+    dispatcher.add_handler(CommandHandler("edit", edit_handler))
 
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
